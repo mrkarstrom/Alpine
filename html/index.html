@@ -4,6 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alipne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js"
+      integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
-  <body></body>
+  <body>
+    <header
+      class="flex items-center justify-between px-8 bg-gray-800 h-20 text-white"
+    >
+      <logo>
+        <a href="/" class="flex items-center gap-1">
+          <img
+            width="48"
+            height="48"
+            src="https://img.icons8.com/android/96/ffffff/fire-element.png"
+            alt="fire-element"
+          />
+          <span>Awsome</span>
+        </a>
+      </logo>
+      <nav>
+        <ul
+          class="flex items-center [&>li>a]:p-4 [&>li>a:hover]:bg-gray-700 [&>li>a]:rounded-lg"
+        >
+          <li><a href="/home">Home</a></li>
+          <li><a href="/create-post">Create Post</a></li>
+          <li><a href="/bart">Bart</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
 </html>
