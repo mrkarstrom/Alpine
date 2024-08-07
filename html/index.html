@@ -50,7 +50,9 @@
         font-size: clamp(1.75rem, 3.5vw, 4rem);
       }
 
-      h4 {
+      h4,
+      input,
+      .addBtn {
         font-size: clamp(1.5rem, 3vw, 3.5rem);
       }
 
@@ -88,6 +90,10 @@
 
       .button:active {
         transform: scale(0.95);
+      }
+
+      .delete:hover {
+        cursor: pointer;
       }
 
       .navitems > li > a {
@@ -130,28 +136,48 @@
         </ul>
       </nav>
     </header>
-    <div class="container">
-      <h1>Testing</h1>
-      <h2>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
-        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
-        facere neque?
-      </h2>
-      <h3>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
-        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
-        facere neque?
-      </h3>
-      <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
-        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
-        facere neque?
-      </h4>
-      <h5>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
-        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
-        facere neque?
-      </h5>
+    <div class="w-full flex flex-col">
+      <div
+        class="m-auto pt-20"
+        x-data="{
+      todos: [],
+      userInput: ''
+    }"
+      >
+        <form x-on:submit.prevent>
+          <input
+            class="border rounded-md bg-[var(--primary-hover)] p-2"
+            x-model="userInput"
+            placeholder="Skriv in sak att göra"
+            type="text"
+          />
+          <button
+            class="addBtn border rounded-md bg-[var(--primary-hover)] p-2"
+            @click="
+          if(userInput.trim().length) todos.push({
+            name: userInput,
+            completed: false
+          });
+          userInput = ''
+        "
+          >
+            Lägg till
+          </button>
+        </form>
+
+        <template x-for="todo in todos">
+          <div class="w-full flex items-center gap-3">
+            <input type="checkbox" />
+            <h3 x-text="todo.name"></h3>
+            <button
+              x-on:click="todos = todos.filter((currTodo)=> currTodo != todo)"
+              class="delete bg-[var(--primary-hover)] p-2 h3"
+            >
+              X
+            </button>
+          </div>
+        </template>
+      </div>
     </div>
   </body>
 </html>
