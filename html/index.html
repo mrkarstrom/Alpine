@@ -11,11 +11,91 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="text/tailwindcss">
-      @apply {
-
+    <style type="text/tailwindcss">
+      :root {
+        --primary: rgb(155, 209, 229);
+        --primary-hover: rgb(106, 142, 174);
+        --navbar: rgb(209, 250, 255);
       }
-    </script>
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 10px;
+        }
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 5rem);
+        line-height: 1.2;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 6rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 5rem);
+      }
+
+      h3 {
+        font-size: clamp(1.75rem, 3.5vw, 4rem);
+      }
+
+      h4 {
+        font-size: clamp(1.5rem, 3vw, 3.5rem);
+      }
+
+      h5 {
+        font-size: clamp(1.25rem, 2.5vw, 3rem);
+      }
+
+      h6 {
+        font-size: clamp(1rem, 2vw, 2.5rem);
+      }
+    </style>
+    <!-- 
+    
+
+      .button {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-align: center;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        padding: 0 1rem;
+        padding-left: 1rem;
+        min-height: 3.3rem;
+        font-weight: 600;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+        transition-property: transform;
+        transition-duration: 0.2s;
+        color: white;
+        background-color: var(--primary);
+      }
+
+      .button:hover {
+        background-color: var(--primary-hover);
+      }
+
+      .button:active {
+        transform: scale(0.95);
+      }
+
+      .navitems > li > a {
+        @apply h-12 px-4 hover:bg-gray-700 rounded-lg flex items-center gap-2;
+      }
+    </style> -->
   </head>
   <body>
     <nav class="w-full flex space-between justify-center bg-gray-500">
@@ -32,5 +112,28 @@
         <li class=""></li>
       </ul>
     </nav>
+    <div class="container">
+      <h1>Testing</h1>
+      <h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
+        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
+        facere neque?
+      </h2>
+      <h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
+        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
+        facere neque?
+      </h3>
+      <h4>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
+        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
+        facere neque?
+      </h4>
+      <h5>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit ut
+        voluptate nemo similique voluptatem reprehenderit deserunt adipisci
+        facere neque?
+      </h5>
+    </div>
   </body>
 </html>
