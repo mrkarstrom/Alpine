@@ -8,20 +8,24 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.8/dist/alpine.js"
       defer
     ></script>
+    <style>
+      * {
+        user-select: none;
+      }
+    </style>
   </head>
-  <body class="bg-gray-300 text-gray-800">
+  <body class="bg-gray-400">
     <header class="border-t-4 border-blue-700 bg-white shadow-md">
       <nav
         class="container mx-auto px-4 flex items-center justify-between py-4"
-        x-data="{ isOpen: false}"
       >
         <ul class="flex">
           <li><a href="#">Home</a></li>
         </ul>
-        <div class="relative">
+        <div class="relative" x-data="{ isOpen: false }">
           <button
-            class="flex items-center"
-            @click="isOpen=!isOpen"
+            @click="isOpen = !isOpen"
+            class="flex items-center focus:outline-none"
             @keydown.escape="isOpen = false"
           >
             <img
@@ -43,11 +47,9 @@
             </svg>
           </button>
           <ul
-            class="absolute font-normal bg-white shadow overflow-hidden rounded w-48 border mt-2 py-1 right-0 z-20"
             x-show="isOpen"
-            x-transition:enter.duration.500ms
-            x-transition:leave.duration.400ms
             @click.away="isOpen = false"
+            class="absolute font-normal bg-white shadow overflow-hidden rounded w-48 border mt-2 py-1 right-0 z-20"
           >
             <li>
               <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
@@ -106,5 +108,47 @@
         </div>
       </nav>
     </header>
+
+    <div class="container mx-auto px-4 xl:px-64 mt-12 mb-12">
+      <h2 class="text-2xl font-bold">Modal</h2>
+
+      <div x-data="{ modalOpen: false }">
+        <button
+          class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+          @click="modalOpen = true
+                    $nextTick(() => $refs.modalCloseButton.focus())
+                    "
+        >
+          Open Modal
+        </button>
+
+        <div
+          style="background-color: rgba(0, 0, 0, 0.5)"
+          class="mx-auto absolute top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+          x-show="modalOpen"
+        >
+          <div class="container mx-auto rounded p-4 mt-2 overflow-y-auto">
+            <div class="bg-white rounded px-8 py-8">
+              <h1 class="font-bold text-2xl mb-3">Modal Title</h1>
+              <div class="modal-body">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Porro amet repellat recusandae.
+                </p>
+              </div>
+              <div class="mt-4">
+                <button
+                  class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+                  @click="modalOpen = false"
+                  x-ref="modalCloseButton"
+                >
+                  Close Modal
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
