@@ -19,7 +19,11 @@
           <li><a href="#">Home</a></li>
         </ul>
         <div class="relative">
-          <button class="flex items-center" @click.prevent="isOpen=true">
+          <button
+            class="flex items-center"
+            @click="isOpen=!isOpen"
+            @keydown.escape="isOpen = false"
+          >
             <img
               src="http://www.gravatar.com/avatar?d=mm"
               alt="avatar"
@@ -41,6 +45,8 @@
           <ul
             class="absolute font-normal bg-white shadow overflow-hidden rounded w-48 border mt-2 py-1 right-0 z-20"
             x-show="isOpen"
+            x-transition:enter.duration.500ms
+            x-transition:leave.duration.400ms
             @click.away="isOpen = false"
           >
             <li>
