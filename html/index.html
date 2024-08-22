@@ -3,7 +3,181 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alipne</title>
+    <title>Alpine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.1/cdn.js"
+      integrity="sha512-bQOI1eWRadC7HPMMU7NUi5Ha3tAgxZi32t/6u2OfKyUpSWyITCxxia5GA2xsXtGcd6tiSWqMYvr8sJhU46D9Ag=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style type="text/tailwindcss">
+      :root {
+        --primary: rgb(155, 209, 229);
+        --primary-hover: rgb(106, 142, 174);
+        --navbar: rgb(209, 250, 255);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 10px;
+        }
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 5rem);
+        line-height: 1.2;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 6rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 5rem);
+      }
+
+      h3 {
+        font-size: clamp(1.75rem, 3.5vw, 4rem);
+      }
+
+      h4,
+      input,
+      .addBtn {
+        font-size: clamp(1.5rem, 3vw, 3.5rem);
+      }
+
+      h5 {
+        font-size: clamp(1.25rem, 2.5vw, 3rem);
+      }
+
+      h6 {
+        font-size: clamp(1rem, 2vw, 2.5rem);
+      }
+
+      .button {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-align: center;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        padding: 0 1rem;
+        padding-left: 1rem;
+        min-height: 3.3rem;
+        font-weight: 600;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+        transition-property: transform;
+        transition-duration: 0.2s;
+        color: white;
+        background-color: var(--primary);
+      }
+
+      .button:hover {
+        background-color: var(--primary-hover);
+      }
+
+      .button:active {
+        transform: scale(0.95);
+      }
+
+      .delete:hover {
+        cursor: pointer;
+      }
+
+      .navitems > li > a {
+        @apply h-12 px-4 hover:bg-gray-700 rounded-lg flex items-center gap-2;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <header
+      class="flex items-center justify-between px-8 bg-gray-800 h-20 text-white sticky top-0 z-50"
+    >
+      <logo>
+        <a class="flex w-full items-center gap-2" href="#">
+          <img
+            class="h-8"
+            src="https://img.icons8.com/ios/100/globe--v1.png"
+            alt="globe--v1"
+          />
+          <span class="text-white">YESWEB</span>
+        </a>
+      </logo>
+      <nav>
+        <ul class="flex items-center navitems">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/create-post">Create Post</a></li>
+          <li>
+            <a href="/bart"
+              ><img
+                class="h-8 rounded-full object-cover bg-teal-200"
+                src="https://img.icons8.com/doodle/96/bart-simpson.png"
+                alt="bart-simpson"
+              />Bart
+              <img
+                class="h-4"
+                src="https://img.icons8.com/ios/50/777777/expand-arrow--v1.png"
+                alt="expand-arrow--v1"
+              />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="w-full flex flex-col">
+      <div
+        class="m-auto pt-20"
+        x-data="{
+      todos: [],
+      userInput: ''
+    }"
+      >
+        <form x-on:submit.prevent>
+          <input
+            class="border rounded-md bg-[var(--primary-hover)] p-2"
+            x-model="userInput"
+            placeholder="Skriv in sak att göra"
+            type="text"
+          />
+          <button
+            class="addBtn border rounded-md bg-[var(--primary-hover)] p-2"
+            @click="
+          if(userInput.trim().length) todos.push({
+            name: userInput,
+            completed: false
+          });
+          userInput = ''
+        "
+          >
+            Lägg till
+          </button>
+        </form>
+
+        <template x-for="todo in todos">
+          <div class="w-full flex items-center gap-3">
+            <input type="checkbox" />
+            <h3 x-text="todo.name"></h3>
+            <button
+              x-on:click="todos = todos.filter((currTodo)=> currTodo != todo)"
+              class="delete bg-[var(--primary-hover)] p-2 h3"
+            >
+              X
+            </button>
+          </div>
+        </template>
+      </div>
+    </div>
+  </body>
 </html>
